@@ -30,7 +30,7 @@ fn w_main() -> Result<(), Fail> {
         .arg(
             Arg::with_name("time")
                 .takes_value(true)
-                .help("Specify time to generate."),
+                .help("Specify time to generate. (ex: 1:23.45)"),
         )
         .subcommand(
             SubCommand::with_name("bulk")
@@ -51,7 +51,7 @@ fn w_main() -> Result<(), Fail> {
                 .arg(
                     Arg::with_name("len")
                         .takes_value(true)
-                        .help("Specify length to generate."),
+                        .help("Specify length to generate. (ex: 1:23.45)"),
                 ),
         )
         .get_matches();
@@ -135,7 +135,7 @@ fn read_time() -> Result<Time, Fail> {
     let mut buf = String::new();
 
     loop {
-        write!(&mut out_lock, "Enter time: ")?;
+        write!(&mut out_lock, "Enter time (ex: 1:23.45): ")?;
         out_lock.flush()?;
         buf.truncate(0);
         in_lock.read_line(&mut buf)?;
